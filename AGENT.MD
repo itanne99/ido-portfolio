@@ -51,7 +51,7 @@ To maintain state-of-the-art implementation quality, the following skills from t
 
 ## 3. Development Workflow
 
-All development cycles MUST follow this five-stage workflow. Do not skip or bypass any stage.
+All development cycles MUST follow this workflow. Do not skip or bypass any stage.
 
 ```mermaid
 graph TD
@@ -59,7 +59,8 @@ graph TD
     B --> C[3. Lint]
     C --> D[4. Build]
     D --> E[5. Test via Jest]
-    E --> F[Vercel Deployment]
+    E --> F[6. Commit Message]
+    F --> G[Vercel Deployment]
 ```
 
 ### Phase 1: Plan First (Planning Mode)
@@ -83,3 +84,6 @@ graph TD
 - **Action**: Run test suites using **Jest** to verify functional logic (e.g., API route logic, utility functions, state transitions).
 - **Rule**: Do not write browser visual UI tests (e.g. Playwright UI workflows) unless explicitly requested; focus purely on code logic.
 - **Command**: `npm test`
+
+### Phase 6: Commit Message
+- **Action**: After successfully validating the changes, generate a proposed git commit message based off the work done (using Conventional Commits format, e.g., `feat: ...`, `fix: ...`, `chore: ...`).
