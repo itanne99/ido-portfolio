@@ -312,7 +312,7 @@ export default function About({ repos, fetchFailed }) {
           />
 
           {hasError && !alertDismissed && (
-            <div className="mb-8 max-w-4xl">
+            <div className="mb-8 w-full">
               <CustomAlert
                 type="warning"
                 title="Showing Fallback Data"
