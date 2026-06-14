@@ -1,0 +1,261 @@
+{
+  "common": {
+    "name": "IDO TANNE",
+    "socials": {
+      "linkedin": "https://linkedin.com/in/idotanne",
+      "github": "https://github.com/itanne99"
+    },
+    "nav": {
+      "links": [
+        { "name": "Home", "href": "/" },
+        { "name": "About", "href": "/about" },
+        { "name": "Skills", "href": "/about#expertise" },
+        { "name": "Contact", "href": "/contact" }
+      ],
+      "contactButton": "Contact Me"
+    },
+    "footer": {
+      "copyright": "Ido Tanne. Crafted with precision and warmth.",
+      "release": "Portfolio 2026 Release",
+      "availability": "Available Worldwide"
+    }
+  },
+  "home": {
+    "seo": {
+      "title": "Ido Tanne | Digital Architect",
+      "description": "Portfolio of Ido Tanne, a Full-Stack Web Developer crafting high-performance digital experiences."
+    },
+    "hero": {
+      "label": "Full-Stack Systems Engineering",
+      "titlePart1": "Architecting",
+      "titleItalic": "Meaningful",
+      "titlePart2": "Experiences",
+      "description": "I build high-performance, scalable full-stack applications that are reliable, accessible, and intuitive.",
+      "ctaPrimary": "Explore Portfolio",
+      "ctaSecondary": "My Philosophy",
+      "systemsBuiltLabel": "Systems Built",
+      "imageSrc": "/imgs/Computer.jpg",
+      "imageAlt": "Photo by James Harrison on Unsplash"
+    },
+    "stats": [
+      { "value": "4+", "label": "Years Experience" },
+      { "value": "5+", "label": "Projects Delivered" }
+    ],
+    "projects": {
+      "label": "Selected Commissions",
+      "title": "Digital Landmarks",
+      "description": "Case studies in professional software engineering. Every system is architected for speed, reliability, and visual precision.",
+      "items": [
+        {
+          "title": "Gabay Estate Management",
+          "category": "Next.js / Stripe / Supabase / Vercel",
+          "imageSrc": "/imgs/Gabay%20Estate%20Management.jpg",
+          "isLarge": true
+        },
+        {
+          "title": "Teachy Time",
+          "category": "Next.js / Supabase / Vercel",
+          "imageSrc": "/imgs/Teachy%20Time.jpg",
+          "isLarge": false
+        }
+      ]
+    }
+  },
+  "about": {
+    "seo": {
+      "title": "About & Work | Ido Tanne",
+      "description": "Learn about Ido Tanne's design philosophy, full-stack expertise, tech stack, and explore public GitHub repositories."
+    },
+    "identity": {
+      "label": "CRAFTING DIGITAL EXPERIENCES",
+      "titlePart1": "I bridge the gap between",
+      "titleItalic": "human experience",
+      "titlePart2": "and digital precision.",
+      "paragraphs": [
+        "I am Ido Tanne, a full-stack engineer and digital systems architect based in the Northeast. My journey began at the intersection of information systems logic and responsive web interface design, leading me to build robust digital platforms that combine industrial-strength backend engineering with sleek, accessible UI.",
+        "As an engineer at Deloitte, I specialize in translating complex business processes and enterprise requirements into highly polished, reliable, and accessible systems. I believe software should breathe. Every database query, API transition, and hover animation is an opportunity to cultivate trust and ease."
+      ],
+      "imageAlt": "Portrait of Ido Tanne"
+    },
+    "experience": {
+      "title": "Work Experience",
+      "jobs": [
+        {
+          "company": "Deloitte",
+          "role": "Analyst 2 / Full-Stack Engineer",
+          "period": "Sep 2022 – Present",
+          "subroles": [
+            {
+              "title": "Florida ACCESS Modernization",
+              "period": "Jul 2023 – Present",
+              "bullets": [
+                "Secured platform access for 4,000+ users via Okta SSO and custom role-based permission maps.",
+                "Developed high-performance ASP.NET REST APIs and structured relational schemas across Postgres, MSSQL, and Oracle.",
+                "Built highly accessible employee interfaces using React and Bootstrap, strictly conforming to WCAG 2.2 standards.",
+                "Integrated AI agents and custom developer-focused MCP servers to optimize SQL queries (25% speed increase) and automate Azure DevOps task resolution.",
+                "Constructed robust automated Jest and C# REST testing environments to ensure 100% stability."
+              ]
+            },
+            {
+              "title": "Cloud Service Client, Artificial Intelligence Division",
+              "period": "Nov 2022 – Feb 2023",
+              "bullets": [
+                "Generated and structured 4,000+ natural language training datasets and labels across 9 enterprise business use cases.",
+                "Developed custom React.js dashboard tools to optimize data ingestion workflows and improve annotation efficiency."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "education": {
+      "title": "Education",
+      "schools": [
+        {
+          "institution": "New Jersey Institute of Technology",
+          "degree": "Bachelor of Science in Information Technology",
+          "period": "Sep 2018 – May 2022"
+        }
+      ]
+    },
+    "expertise": {
+      "title": "Expertise",
+      "architecture": {
+        "title": "Architecture",
+        "skills": [
+          { "name": "System Design", "level": "EXPERT" },
+          { "name": "API Engine Integration", "level": "EXPERT" },
+          { "name": "Cloud Infrastructure", "level": "ADVANCED" }
+        ]
+      },
+      "visualLanguage": {
+        "title": "Visual Language",
+        "description": "Crafting unified brand aesthetics through typographic discipline, HSL-guided colors, and tactile micro-animations. Every layout is spaced as a gallery to avoid cognitive clutter.",
+        "tags": ["Editorial UI", "Design Systems", "Motion Principles"]
+      },
+      "humanCentricity": {
+        "title": "Human Centricity",
+        "features": [
+          { "title": "WCAG 2.2 Accessibility", "description": "Semantic markup and keyboard-first navigability." },
+          { "title": "Interactive Feedback", "description": "Reassuring micro-states during long tasks." },
+          { "title": "Intelligent Flows", "description": "Anticipating error boundary behaviors gracefully." }
+        ]
+      },
+      "techStack": {
+        "title": "The Tech Stack",
+        "updatedLabel": "UPDATED 2026",
+        "categories": [
+          {
+            "name": "Languages & DBs",
+            "items": ["C# / .NET Core", "Python / Java / C++", "Postgres / MSSQL / SQL", "Oracle / Supabase / Redis"]
+          },
+          {
+            "name": "Frameworks & UI",
+            "items": ["React / Next.js", "ASP.NET / EF Core", "Django / Flask / Express", "Tailwind / Bootstrap"]
+          },
+          {
+            "name": "DevOps & Cloud",
+            "items": ["Azure DevOps / Git", "Docker / DevContainers", "Vercel / Heroku / Unraid", "Linux / Proxmox / Windows"]
+          },
+          {
+            "name": "AI, Auth & Tools",
+            "items": ["AI Agents / MCP Servers", "Okta / OAuth / OnBase", "Azure Storage Accounts", "Figma / Photoshop"]
+          }
+        ]
+      }
+    },
+    "repositories": {
+      "title": "Open Source & Repositories",
+      "description": "A selection of experimental libraries, utility tools, and core architectures dynamically synchronized from GitHub.",
+      "fallback": [
+        {
+          "id": 1,
+          "name": "Aether-Engine",
+          "description": "A high-performance rendering engine for WebGL built on Mediterranean design principles. Focuses on soft shadows and organic motion.",
+          "stargazers_count": 12,
+          "language": "TypeScript",
+          "html_url": "https://github.com/itanne99"
+        },
+        {
+          "id": 2,
+          "name": "Vault-Core",
+          "description": "The backbone microservices architecture used in Deloitte Vault API integrations. Lightweight, scalable, and secure by default.",
+          "stargazers_count": 8,
+          "language": "C#",
+          "html_url": "https://github.com/itanne99"
+        },
+        {
+          "id": 3,
+          "name": "Aegean-Tokens",
+          "description": "A comprehensive design token system for Tailwind CSS inspired by Aegean landscapes and architectural textures.",
+          "stargazers_count": 4,
+          "language": "JavaScript",
+          "html_url": "https://github.com/itanne99"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Let's create something timeless.",
+      "description": "Whether it's a high-performance backend infrastructure integration or a pixel-perfect, interactive web application, I bring craft and scale together.",
+      "button": "Start a Project"
+    }
+  },
+  "contact": {
+    "seo": {
+      "title": "Contact | Ido Tanne",
+      "description": "Initiate a project or reach out to Ido Tanne. Let's build something timeless."
+    },
+    "header": {
+      "titlePart1": "Let's build something ",
+      "titleItalic": "timeless",
+      "titleSuffix": ".",
+      "description": "Whether you have a specific project in mind or just want to explore the possibilities of a new collaboration, I'm here to bring precision and warmth to your vision."
+    },
+    "sidebar": {
+      "availabilityLabel": "Availability",
+      "availabilityStatus": "Accepting new projects",
+      "locationLabel": "Location",
+      "locationValue": "Northeast US / Remote",
+      "locationDescription": "Working across timezones with software engineering discipline and coastal design inspiration.",
+      "connectLabel": "Connect"
+    },
+    "success": {
+      "title": "Inquiry Received",
+      "description": "Thank you for reaching out. I personally review all inquiries and will respond within 48 business hours to discuss your project.",
+      "backButton": "Back to Form"
+    },
+    "form": {
+      "nameLabel": "Your Name",
+      "emailLabel": "Email Address",
+      "projectTypeLabel": "Project Type",
+      "projectTypes": [
+        { "value": "web-design", "label": "Product Design" },
+        { "value": "development", "label": "Full-Stack Development" },
+        { "value": "consultancy", "label": "Creative Strategy" },
+        { "value": "other", "label": "Something Else" }
+      ],
+      "messageLabel": "Your Vision",
+      "privacyPrefix": "By clicking send, you agree to our ",
+      "privacyTermsLink": "privacy terms",
+      "privacySuffix": ".",
+      "submitButton": "Initiate Project",
+      "validationError": "Please fill in all required fields."
+    },
+    "privacyModal": {
+      "title": "Privacy Terms",
+      "closeLabel": "Close modal",
+      "button": "Understood",
+      "paragraphs": [
+        "Your privacy is highly valued. Any personal information submitted through this inquiry form—including your name, email address, and project details—is treated with complete confidentiality.",
+        "Data Usage: Your details are solely used to review, reply to, and coordinate on your service inquiries.",
+        "Data Sharing: Under no circumstances is your information sold, shared, or distributed to third-party services or marketing lists.",
+        "Data Retention: Information is kept securely within our project review queue for communication reference and is deleted upon request."
+      ]
+    }
+  },
+  "repoCard": {
+    "noDescription": "No description provided.",
+    "defaultLanguage": "Open Source",
+    "viewOnGithub": "VIEW ON GITHUB"
+  }
+}
