@@ -241,7 +241,7 @@ export default function Contact() {
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
                     {/* Name Field */}
-                    <div className="relative flex flex-col">
+                    <div className="relative flex flex-col" suppressHydrationWarning={true}>
                       <input
                         id="name"
                         value={formData.name}
@@ -261,7 +261,7 @@ export default function Contact() {
                     </div>
 
                     {/* Email Field */}
-                    <div className="relative flex flex-col">
+                    <div className="relative flex flex-col" suppressHydrationWarning={true}>
                       <input
                         id="email"
                         value={formData.email}
