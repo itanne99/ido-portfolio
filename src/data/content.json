@@ -195,7 +195,7 @@
       ]
     },
     "cta": {
-      "title": "Let's create something timeless.",
+      "title": "Let's create something meaningful.",
       "description": "Whether it's a high-performance backend infrastructure integration or a pixel-perfect, interactive web application, I bring craft and scale together.",
       "button": "Start a Project"
     }
@@ -203,11 +203,11 @@
   "contact": {
     "seo": {
       "title": "Contact | Ido Tanne",
-      "description": "Initiate a project or reach out to Ido Tanne. Let's build something timeless."
+      "description": "Initiate a project or reach out to Ido Tanne. Let's build something meaningful."
     },
     "header": {
       "titlePart1": "Let's build something ",
-      "titleItalic": "timeless",
+      "titleItalic": "meaningful",
       "titleSuffix": ".",
       "description": "Whether you have a specific project in mind or just want to explore the possibilities of a new collaboration, I'm here to bring precision and warmth to your vision."
     },
