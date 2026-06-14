@@ -1,9 +1,7 @@
-import Head from "next/head";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Send, CheckCircle2, ChevronDown, X } from "lucide-react";
-import TopNavBar from "@/components/top-nav-bar";
-import Footer from "@/components/footer";
+import Layout from "@/components/layout";
 import content from "@/data/content.json";
 
 export default function Contact() {
@@ -37,248 +35,236 @@ export default function Contact() {
   ];
 
   return (
-    <>
-      <Head>
-        <title>{content.contact.seo.title}</title>
-        <meta
-          name="description"
-          content={content.contact.seo.description}
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
+    <Layout
+      title={content.contact.seo.title}
+      description={content.contact.seo.description}
+    >
+      <main className="min-h-screen pt-40 pb-20 px-margin-mobile md:px-gutter max-w-container-max mx-auto overflow-hidden">
+        {/* Header */}
+        <header className="max-w-4xl mx-auto mb-20 text-center md:text-left">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight"
+          >
+            {content.contact.header.titlePart1}<span className="italic font-normal">{content.contact.header.titleItalic}</span>{content.contact.header.titleSuffix}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl"
+          >
+            {content.contact.header.description}
+          </motion.p>
+        </header>
 
-      <div className="bg-surface text-on-surface min-h-screen overflow-x-hidden selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
-        <TopNavBar />
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto items-start">
+          
+          {/* Sidebar (Left column) */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+            className="lg:col-span-4 space-y-12"
+          >
+            {/* Availability */}
+            <section>
+              <span className="font-label-caps text-primary mb-4 block uppercase tracking-widest font-bold">
+                {content.contact.sidebar.availabilityLabel}
+              </span>
+              <div className="flex items-center gap-3">
+                <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
+                <p className="font-body-md text-on-surface font-semibold">{content.contact.sidebar.availabilityStatus}</p>
+              </div>
+            </section>
 
-        <main className="min-h-screen pt-40 pb-20 px-margin-mobile md:px-gutter max-w-container-max mx-auto overflow-hidden">
-          {/* Header */}
-          <header className="max-w-4xl mx-auto mb-20 text-center md:text-left">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight"
-            >
-              {content.contact.header.titlePart1}<span className="italic font-normal">{content.contact.header.titleItalic}</span>{content.contact.header.titleSuffix}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-              className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl"
-            >
-              {content.contact.header.description}
-            </motion.p>
-          </header>
+            {/* Location */}
+            <section>
+              <span className="font-label-caps text-primary mb-4 block uppercase tracking-widest font-bold">
+                {content.contact.sidebar.locationLabel}
+              </span>
+              <p className="font-headline-sm text-headline-sm text-on-surface mb-2 font-bold">
+                {content.contact.sidebar.locationValue}
+              </p>
+              <p className="font-body-md text-on-surface-variant leading-relaxed">
+                {content.contact.sidebar.locationDescription}
+              </p>
+            </section>
 
-          {/* Main Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto items-start">
-            
-            {/* Sidebar (Left column) */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
-              className="lg:col-span-4 space-y-12"
-            >
-              {/* Availability */}
-              <section>
-                <span className="font-label-caps text-primary mb-4 block uppercase tracking-widest font-bold">
-                  {content.contact.sidebar.availabilityLabel}
-                </span>
-                <div className="flex items-center gap-3">
-                  <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
-                  <p className="font-body-md text-on-surface font-semibold">{content.contact.sidebar.availabilityStatus}</p>
-                </div>
-              </section>
-
-              {/* Location */}
-              <section>
-                <span className="font-label-caps text-primary mb-4 block uppercase tracking-widest font-bold">
-                  {content.contact.sidebar.locationLabel}
-                </span>
-                <p className="font-headline-sm text-headline-sm text-on-surface mb-2 font-bold">
-                  {content.contact.sidebar.locationValue}
-                </p>
-                <p className="font-body-md text-on-surface-variant leading-relaxed">
-                  {content.contact.sidebar.locationDescription}
-                </p>
-              </section>
-
-              {/* Connect */}
-              <section>
-                <span className="font-label-caps text-primary mb-4 block uppercase tracking-widest font-bold">
-                  {content.contact.sidebar.connectLabel}
-                </span>
-                <div className="flex flex-col gap-4">
-                  {connectLinks.map((link) => (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center justify-between p-4 bg-surface-container-low rounded-2xl border border-transparent hover:border-outline-variant transition-all duration-300 cursor-pointer"
-                    >
-                      <span className="font-body-lg text-on-surface font-semibold">{link.name}</span>
-                      <ArrowRight size={18} className="text-primary group-hover:translate-x-1 transition-transform duration-300" />
-                    </a>
-                  ))}
-                </div>
-              </section>
-            </motion.div>
-
-            {/* Contact Form / Success Container (Right column) */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-              className="lg:col-span-8 bg-surface-container-lowest p-8 md:p-12 lg:p-16 rounded-[2.5rem] luxury-shadow border border-surface-container-highest"
-            >
-              <AnimatePresence mode="wait">
-                {isSubmitted ? (
-                  <motion.div
-                    key="success-message"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="text-center py-20 space-y-6"
+            {/* Connect */}
+            <section>
+              <span className="font-label-caps text-primary mb-4 block uppercase tracking-widest font-bold">
+                {content.contact.sidebar.connectLabel}
+              </span>
+              <div className="flex flex-col gap-4">
+                {connectLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-4 bg-surface-container-low rounded-2xl border border-transparent hover:border-outline-variant transition-all duration-300 cursor-pointer"
                   >
-                    <div className="flex justify-center text-secondary">
-                      <CheckCircle2 size={64} className="stroke-[1.5]" />
-                    </div>
-                    <h2 className="font-headline-md text-headline-md text-on-surface font-bold">{content.contact.success.title}</h2>
-                    <p className="font-body-lg text-on-surface-variant max-w-md mx-auto leading-relaxed">
-                      {content.contact.success.description}
-                    </p>
-                    <button
-                      className="mt-8 text-primary font-label-caps font-bold underline underline-offset-4 hover:text-primary-container transition-colors"
-                      onClick={() => {
-                        setFormData({ name: "", email: "", subject: "", message: "" });
-                        setIsSubmitted(false);
-                      }}
-                    >
-                      {content.contact.success.backButton}
-                    </button>
-                  </motion.div>
-                ) : (
-                  <motion.form
-                    key="contact-form"
-                    initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.4 }}
-                    onSubmit={handleSubmit}
-                    className="space-y-12"
-                    suppressHydrationWarning={true}
+                    <span className="font-body-lg text-on-surface font-semibold">{link.name}</span>
+                    <ArrowRight size={18} className="text-primary group-hover:translate-x-1 transition-transform duration-300" />
+                  </a>
+                ))}
+              </div>
+            </section>
+          </motion.div>
+
+          {/* Contact Form / Success Container (Right column) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+            className="lg:col-span-8 bg-surface-container-lowest p-8 md:p-12 lg:p-16 rounded-[2.5rem] luxury-shadow border border-surface-container-highest"
+          >
+            <AnimatePresence mode="wait">
+              {isSubmitted ? (
+                <motion.div
+                  key="success-message"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="text-center py-20 space-y-6"
+                >
+                  <div className="flex justify-center text-secondary">
+                    <CheckCircle2 size={64} className="stroke-[1.5]" />
+                  </div>
+                  <h2 className="font-headline-md text-headline-md text-on-surface font-bold">{content.contact.success.title}</h2>
+                  <p className="font-body-lg text-on-surface-variant max-w-md mx-auto leading-relaxed">
+                    {content.contact.success.description}
+                  </p>
+                  <button
+                    className="mt-8 text-primary font-label-caps font-bold underline underline-offset-4 hover:text-primary-container transition-colors"
+                    onClick={() => {
+                      setFormData({ name: "", email: "", subject: "", message: "" });
+                      setIsSubmitted(false);
+                    }}
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
-                      {/* Name Field */}
-                      <div className="relative flex flex-col">
-                        <input
-                          id="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          className="floating-label-input peer form-input-border text-body-lg w-full py-2"
-                          placeholder=" "
-                          type="text"
-                          required
-                          suppressHydrationWarning={true}
-                        />
-                        <label
-                          className="absolute left-0 top-0 font-label-caps transition-all pointer-events-none font-bold"
-                          htmlFor="name"
-                        >
-                          {content.contact.form.nameLabel}
-                        </label>
-                      </div>
-
-                      {/* Email Field */}
-                      <div className="relative flex flex-col">
-                        <input
-                          id="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="floating-label-input peer form-input-border text-body-lg w-full py-2"
-                          placeholder=" "
-                          type="email"
-                          required
-                          suppressHydrationWarning={true}
-                        />
-                        <label
-                          className="absolute left-0 top-0 font-label-caps transition-all pointer-events-none font-bold"
-                          htmlFor="email"
-                        >
-                          {content.contact.form.emailLabel}
-                        </label>
-                      </div>
-                    </div>
-
-                    {/* Subject/Project Selector */}
+                    {content.contact.success.backButton}
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="contact-form"
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.4 }}
+                  onSubmit={handleSubmit}
+                  className="space-y-12"
+                  suppressHydrationWarning={true}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                    {/* Name Field */}
                     <div className="relative flex flex-col">
-                      <select
-                        id="subject"
-                        value={formData.subject}
+                      <input
+                        id="name"
+                        value={formData.name}
                         onChange={handleInputChange}
-                        className="form-input-border text-body-lg w-full py-2 appearance-none cursor-pointer pr-8 text-on-surface-variant font-medium"
-                      >
-                        <option value="" disabled>{content.contact.form.projectTypeLabel}</option>
-                        {content.contact.form.projectTypes.map((type) => (
-                          <option key={type.value} value={type.value}>
-                            {type.label}
-                          </option>
-                        ))}
-                      </select>
-                      <ChevronDown size={20} className="absolute right-0 bottom-2.5 pointer-events-none text-on-surface-variant" />
-                    </div>
-
-                    {/* Message Field */}
-                    <div className="relative flex flex-col pt-4">
-                      <textarea
-                        id="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        className="floating-label-input peer form-input-border text-body-lg w-full py-2 resize-none"
+                        className="floating-label-input peer form-input-border text-body-lg w-full py-2"
                         placeholder=" "
-                        rows={4}
+                        type="text"
                         required
                         suppressHydrationWarning={true}
                       />
                       <label
-                        className="absolute left-0 top-4 font-label-caps transition-all pointer-events-none font-bold"
-                        htmlFor="message"
+                        className="absolute left-0 top-0 font-label-caps transition-all pointer-events-none font-bold"
+                        htmlFor="name"
                       >
-                        {content.contact.form.messageLabel}
+                        {content.contact.form.nameLabel}
                       </label>
                     </div>
 
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 pt-8">
-                      <p className="font-body-md text-on-surface-variant italic text-sm text-center md:text-left">
-                        {content.contact.form.privacyPrefix}
-                        <button
-                          type="button"
-                          onClick={() => setIsPrivacyModalOpen(true)}
-                          className="underline hover:text-primary cursor-pointer font-medium bg-transparent border-none p-0 inline focus:outline-none"
-                        >
-                          {content.contact.form.privacyTermsLink}
-                        </button>
-                        {content.contact.form.privacySuffix}
-                      </p>
-                      <button
-                        className="w-full md:w-auto bg-primary text-on-primary px-12 py-4 rounded-full font-label-caps font-bold hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 cursor-pointer"
-                        type="submit"
+                    {/* Email Field */}
+                    <div className="relative flex flex-col">
+                      <input
+                        id="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="floating-label-input peer form-input-border text-body-lg w-full py-2"
+                        placeholder=" "
+                        type="email"
+                        required
+                        suppressHydrationWarning={true}
+                      />
+                      <label
+                        className="absolute left-0 top-0 font-label-caps transition-all pointer-events-none font-bold"
+                        htmlFor="email"
                       >
-                        {content.contact.form.submitButton}
-                        <Send size={14} />
-                      </button>
+                        {content.contact.form.emailLabel}
+                      </label>
                     </div>
-                  </motion.form>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          </div>
-        </main>
+                  </div>
 
-        <Footer />
-      </div>
+                  {/* Subject/Project Selector */}
+                  <div className="relative flex flex-col">
+                    <select
+                      id="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className="form-input-border text-body-lg w-full py-2 appearance-none cursor-pointer pr-8 text-on-surface-variant font-medium"
+                    >
+                      <option value="" disabled>{content.contact.form.projectTypeLabel}</option>
+                      {content.contact.form.projectTypes.map((type) => (
+                        <option key={type.value} value={type.value}>
+                          {type.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown size={20} className="absolute right-0 bottom-2.5 pointer-events-none text-on-surface-variant" />
+                  </div>
+
+                  {/* Message Field */}
+                  <div className="relative flex flex-col pt-4">
+                    <textarea
+                      id="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="floating-label-input peer form-input-border text-body-lg w-full py-2 resize-none"
+                      placeholder=" "
+                      rows={4}
+                      required
+                      suppressHydrationWarning={true}
+                    />
+                    <label
+                      className="absolute left-0 top-4 font-label-caps transition-all pointer-events-none font-bold"
+                      htmlFor="message"
+                    >
+                      {content.contact.form.messageLabel}
+                    </label>
+                  </div>
+
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-8 pt-8">
+                    <p className="font-body-md text-on-surface-variant italic text-sm text-center md:text-left">
+                      {content.contact.form.privacyPrefix}
+                      <button
+                        type="button"
+                        onClick={() => setIsPrivacyModalOpen(true)}
+                        className="underline hover:text-primary cursor-pointer font-medium bg-transparent border-none p-0 inline focus:outline-none"
+                      >
+                        {content.contact.form.privacyTermsLink}
+                      </button>
+                      {content.contact.form.privacySuffix}
+                    </p>
+                    <button
+                      className="w-full md:w-auto bg-primary text-on-primary px-12 py-4 rounded-full font-label-caps font-bold hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 cursor-pointer"
+                      type="submit"
+                    >
+                      {content.contact.form.submitButton}
+                      <Send size={14} />
+                    </button>
+                  </div>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </main>
 
       <AnimatePresence>
         {isPrivacyModalOpen && (
@@ -326,6 +312,6 @@ export default function Contact() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </Layout>
   );
 }
