@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import content from "@/data/content.json";
 
 export default function TopNavBar() {
   const router = useRouter();
@@ -16,11 +17,7 @@ export default function TopNavBar() {
     setActiveHash("");
   }
 
-  const navLinks = [
-    { name: "About", href: "/about" },
-    { name: "Skills", href: "/about#expertise" },
-    { name: "Contact", href: "/contact" },
-  ];
+  const navLinks = content.common.nav.links;
 
   useEffect(() => {
     if (router.pathname !== "/about") {
@@ -79,8 +76,8 @@ export default function TopNavBar() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-8 px-6 md:px-8 py-3 max-w-4xl mx-auto rounded-full mt-6 bg-surface/80 backdrop-blur-md border border-outline-variant/10 shadow-sm hover:shadow-md transition-shadow duration-300 w-[90%] md:w-full"
       >
-        <Link href="/about" className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight cursor-pointer">
-          IDO TANNE
+        <Link href="/" className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight cursor-pointer">
+          {content.common.name}
         </Link>
 
         {/* Desktop Links */}
@@ -103,7 +100,7 @@ export default function TopNavBar() {
         {/* Right Action Button & Mobile Menu Toggle */}
         <div className="flex items-center gap-4">
           <Link href="/contact" className="hidden sm:inline-block font-body-lg text-body-lg px-6 py-2 bg-primary text-on-primary rounded-full hover:opacity-90 active:scale-95 transition-all cursor-pointer">
-            Contact Me
+            {content.common.nav.contactButton}
           </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -142,7 +139,7 @@ export default function TopNavBar() {
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center bg-primary text-on-primary py-3 rounded-full font-label-caps cursor-pointer"
             >
-              Contact Me
+              {content.common.nav.contactButton}
             </Link>
           </motion.div>
         )}
