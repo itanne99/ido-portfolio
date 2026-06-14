@@ -1,4 +1,17 @@
+import rateLimit from "@/utils/rate-limit";
+
+const limiter = rateLimit({
+  limit: 5,
+  windowMs: 60_000,
+});
+
 export default async function handler(req, res) {
+  if (!limiter.check(req)) {
+    return res.status(429).json({
+      error: "Too many requests. Please try again later.",
+    });
+  }
+
   const username = "itanne99";
 
   try {

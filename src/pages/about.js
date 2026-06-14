@@ -49,7 +49,23 @@ export default function About({ repos, fetchFailed }) {
     setLoading(true);
     try {
       const res = await fetch("/api/github-repos");
-      if (!res.ok) throw new Error("API call failed");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        const message = errorData.error || "Failed to retrieve live GitHub repositories. Please check your network and try again.";
+        setHasError(true);
+        showAlert(message, {
+          type: "error",
+          title: "Sync Failed",
+          duration: 8000,
+          action: {
+            label: "Retry",
+            onClick: () => handleRefresh(),
+          },
+        });
+        setLoading(false);
+        return;
+      }
+      
       const data = await res.json();
       setReposList(data);
       setHasError(false);
@@ -311,6 +327,7 @@ export default function About({ repos, fetchFailed }) {
           )}
 
           <motion.div 
+            key={loading ? "loading" : "loaded"}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
