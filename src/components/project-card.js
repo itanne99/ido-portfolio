@@ -1,13 +1,18 @@
 import { motion } from "framer-motion";
 
-export default function ProjectCard({ title, category, imageSrc, isLarge = false }) {
+export default function ProjectCard({ title, category, imageSrc, url, isLarge = false }) {
   return (
-    <motion.div
+    <motion.a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`group cursor-pointer ${isLarge ? "md:col-span-8" : "md:col-span-4"}`}
+      className={`group block cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 rounded-3xl h-full ${
+        isLarge ? "md:col-span-8" : "md:col-span-4"
+      }`}
     >
       <div
         className={`relative overflow-hidden rounded-3xl bg-surface-container-highest shadow-sm transition-all duration-500 group-hover:shadow-2xl border border-outline-variant/10 ${
@@ -31,6 +36,6 @@ export default function ProjectCard({ title, category, imageSrc, isLarge = false
           </div>
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }

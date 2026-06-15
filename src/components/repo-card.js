@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, ArrowRight, Terminal, Database, Palette, FileCode } from "lucide-react";
+import content from "@/data/content.json";
 
 const getRepoIcon = (lang) => {
   const l = lang?.toLowerCase() || "";
@@ -40,13 +41,13 @@ export default function RepoCard({ repo }) {
         </h3>
         
         <p className="font-body-md text-on-surface-variant text-sm mb-6 line-clamp-3 leading-relaxed">
-          {description || "No description provided."}
+          {description || content.repoCard.noDescription}
         </p>
       </div>
 
       <div className="flex items-center justify-between pt-6 border-t border-outline-variant/10">
         <span className="px-3 py-1 bg-primary/10 text-primary font-label-caps text-[10px] rounded-full uppercase font-bold">
-          {language || "Open Source"}
+          {language || content.repoCard.defaultLanguage}
         </span>
         
         <a
@@ -55,7 +56,7 @@ export default function RepoCard({ repo }) {
           rel="noopener noreferrer"
           className="group flex items-center gap-2 font-label-caps text-primary hover:text-primary-container transition-colors font-bold text-xs cursor-pointer"
         >
-          VIEW ON GITHUB 
+          {content.repoCard.viewOnGithub} 
           <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </a>
       </div>
