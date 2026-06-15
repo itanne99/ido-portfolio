@@ -232,6 +232,7 @@
         { "value": "web-design", "label": "Product Design" },
         { "value": "development", "label": "Full-Stack Development" },
         { "value": "consultancy", "label": "Creative Strategy" },
+        { "value": "system-report", "label": "System Diagnostic / Bug Report" },
         { "value": "other", "label": "Something Else" }
       ],
       "messageLabel": "Your Vision",
@@ -257,5 +258,21 @@
     "noDescription": "No description provided.",
     "defaultLanguage": "Open Source",
     "viewOnGithub": "VIEW ON GITHUB"
+  },
+  "notFound": {
+    "seo": {
+      "title": "404: Page Not Found | Ido Tanne",
+      "description": "The page you are looking for does not exist or has been moved. Explore Ido Tanne's full-stack development and digital architecture portfolio."
+    },
+    "label": "ERROR 404",
+    "titlePart1": "Lost in the",
+    "titleItalic": "Digital",
+    "titlePart2": "Ether",
+    "description": "The page you are looking for has either drifted out to sea or was never built. Let's guide you back to familiar waters.",
+    "ctaHome": "Return Home",
+    "ctaProjects": "View Projects",
+    "ctaContact": "Send a Message",
+    "imageSrc": "/imgs/sailboat-lost.svg",
+    "interactiveLabel": "Interactive Compass - pointer tracker"
   }
 }

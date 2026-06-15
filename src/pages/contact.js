@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Send, CheckCircle2, ChevronDown, X } from "lucide-react";
 import emailjs from "@emailjs/browser";
@@ -17,6 +18,9 @@ const getProjectTypeLabel = (value) => {
     case "consultancy": {
       return "Creative Strategy";
     }
+    case "system-report": {
+      return "System Diagnostic / Bug Report";
+    }
     case "other": {
       return "Something Else";
     }
@@ -28,6 +32,7 @@ const getProjectTypeLabel = (value) => {
 
 export default function Contact() {
   const { showAlert } = useAlert();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,6 +42,24 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+    if (router.isReady && router.query.type) {
+      const queryType = router.query.type;
+      const isValidType = content.contact.form.projectTypes.some(
+        (t) => t.value === queryType
+      );
+      if (isValidType) {
+        timeoutId = setTimeout(() => {
+          setFormData((previous) => ({ ...previous, subject: queryType }));
+        }, 0);
+      }
+    }
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [router.isReady, router.query]);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
