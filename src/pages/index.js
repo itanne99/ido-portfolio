@@ -141,6 +141,7 @@ export default function Home() {
                 category={project.category}
                 imageSrc={project.imageSrc}
                 isLarge={project.isLarge}
+                url={project.url}
               />
             ))}
           </div>
