@@ -50,13 +50,15 @@
           "title": "Gabay Estate Management",
           "category": "Next.js / Stripe / Supabase / Vercel",
           "imageSrc": "/imgs/Gabay%20Estate%20Management.jpg",
-          "isLarge": true
+          "isLarge": true,
+          "url": "https://gabayestatemanagement.com/"
         },
         {
           "title": "Teachy Time",
           "category": "Next.js / Supabase / Vercel",
           "imageSrc": "/imgs/Teachy%20Time.jpg",
-          "isLarge": false
+          "isLarge": false,
+          "url": "https://teachytime.lukeido.com/"
         }
       ]
     }
