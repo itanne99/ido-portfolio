@@ -188,7 +188,14 @@ body {
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .reveal-on-scroll.active {
   opacity: 1;
   transform: translateY(0);
 }
+
+@keyframes shrink {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+

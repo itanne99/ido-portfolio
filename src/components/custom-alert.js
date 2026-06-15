@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React from "react";
 import { X, CheckCircle2, AlertTriangle, AlertCircle, Info } from "lucide-react";
 
 const getAlertStyles = (type, isToast) => {
@@ -56,19 +55,10 @@ export default function CustomAlert({
   action,
   onClose,
   isToast = false,
+  paused = false,
 }) {
-  const shouldReduceMotion = useReducedMotion();
   const styles = getAlertStyles(type, isToast);
   const IconComponent = styles.Icon;
-
-  useEffect(() => {
-    if (isToast && duration && duration > 0 && onClose) {
-      const timer = setTimeout(() => {
-        onClose();
-      }, duration);
-      return () => clearTimeout(timer);
-    }
-  }, [isToast, duration, onClose]);
 
   const alertContent = (
     <div
@@ -125,42 +115,21 @@ export default function CustomAlert({
 
       {/* Visual Progress Bar Timer for Toasts */}
       {isToast && duration && duration > 0 && (
-        <motion.div
-          initial={{ scaleX: 1 }}
-          animate={{ scaleX: 0 }}
-          style={{ originX: 0 }}
-          transition={{ duration: duration / 1000, ease: "linear" }}
+        <div
+          style={{
+            transformOrigin: "left",
+            animationName: "shrink",
+            animationDuration: `${duration}ms`,
+            animationTimingFunction: "linear",
+            animationFillMode: "forwards",
+            animationPlayState: paused ? "paused" : "running",
+          }}
+          onAnimationEnd={onClose}
           className={`absolute bottom-0 left-0 right-0 h-[3px] ${styles.progressBarColor}`}
         />
       )}
     </div>
   );
-
-  if (isToast) {
-    return (
-      <motion.div
-        initial={{ 
-          opacity: 0, 
-          x: shouldReduceMotion ? 0 : 50, 
-          scale: shouldReduceMotion ? 1 : 0.9 
-        }}
-        animate={{ opacity: 1, x: 0, scale: 1 }}
-        exit={{ 
-          opacity: 0, 
-          x: shouldReduceMotion ? 0 : 20, 
-          scale: shouldReduceMotion ? 1 : 0.95 
-        }}
-        transition={
-          shouldReduceMotion 
-            ? { duration: 0.2 } 
-            : { type: "spring", stiffness: 350, damping: 25 }
-        }
-        className="w-full"
-      >
-        {alertContent}
-      </motion.div>
-    );
-  }
 
   return alertContent;
 }
