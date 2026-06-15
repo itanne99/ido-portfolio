@@ -75,7 +75,8 @@
         "I am Ido Tanne, a full-stack engineer and digital systems architect based in South Florida. My professional journey began with the want to help people, which turned into a passion for building high-performance digital experiences. I specialize in full-stack systems engineering, combining robust backend engineering with sleek, accessible UI.",
         "At Deloitte, I translate complex business processes into highly polished, reliable, and accessible systems. I believe software should breathe. Every database query, API transition, and hover animation is an opportunity to cultivate trust and ease."
       ],
-      "imageAlt": "Portrait of Ido Tanne"
+      "imageAlt": "Portrait of Ido Tanne",
+      "imgUrl": "/imgs/Ido%20Headshot.jpg"
     },
     "experience": {
       "title": "Work Experience",

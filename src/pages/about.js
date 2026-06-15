@@ -65,7 +65,7 @@ export default function About({ repos }) {
             <img
               alt={content.about.identity.imageAlt}
               className="w-full h-full object-cover rounded-[2rem] shadow-xl relative z-10 border border-outline-variant/15"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnEWVS8kCbqz2iGh2gN7yPBJyzRhYbkkUXZP3pY0TXfN84SaJ7wKzVEvsp1WdH72HEmKYuqlc_FBMxNj-FyH4Lv2prTLQCJA0gT7vy9Ky4QMuLbl12BpcxoGt65vLsHShtiC1_Gi3JfAcLT-e4TaSRw0zPtg8WDNsotKw1ZGS4CGeqTcAU7hFsbeb_KiLtXvRK9z8BO48fElcXgBxIqnlOcDZDeZ_EJ_TnrzKf3Gk0TgFLy32C-Nk_QjUOHS0Yooz_Jz5akYKd44CD"
+              src={content.about.identity.imgUrl}
             />
           </motion.div>
         </section>
