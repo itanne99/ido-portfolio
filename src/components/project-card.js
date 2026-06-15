@@ -28,8 +28,8 @@ export default function ProjectCard({ title, category, imageSrc, url, isLarge = 
         {/* Subtle Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent mix-blend-multiply opacity-20" />
 
-        {/* Info Overlay on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8 md:p-12">
+        {/* Info Overlay on Hover / Focus */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-500 flex items-end p-8 md:p-12">
           <div className="text-white space-y-2">
             <span className="font-label-caps text-white/70 text-xs tracking-widest">{category}</span>
             <h3 className="font-headline-md text-white text-2xl md:text-3xl leading-tight font-bold">{title}</h3>

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "jest",
     "prepare": "husky"
   },
   "dependencies": {
@@ -20,14 +21,21 @@
   "devDependencies": {
     "@secretlint/secretlint-rule-preset-recommend": "^13.0.2",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "agentation": "^3.0.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "eslint-plugin-unicorn": "^65.0.1",
     "husky": "^9.1.7",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "lint-staged": "17",
     "secretlint": "^13.0.2",
     "tailwindcss": "^4",
     "typescript": "^6.0.3"
+  },
+  "resolutions": {
+    "postcss": "^8.5.10"
   }
 }

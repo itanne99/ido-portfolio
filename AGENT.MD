@@ -66,24 +66,47 @@ graph TD
 ### Phase 1: Plan First (Planning Mode)
 - **Action**: Research the requirements and codebase state. Draft a detailed `implementation_plan.md` in the artifact directory.
 - **Rule**: Include open questions and request user feedback. **Stop and wait** for explicit user approval before writing code.
+- **Skills to Apply**:
+  - [context7-auto-research](.agents/skills/context7-auto-research/SKILL.md): Research the latest framework/library documentation (e.g., React 19, Next.js Pages Router, Tailwind CSS v4) before drawing up the plan.
+  - [ui-ux-pro-max](.agents/skills/ui-ux-pro-max/SKILL.md) / [uxui-principles](.agents/skills/uxui-principles/SKILL.md): Guide structural and design decisions during the architectural planning stage.
+  - [test-driven-development](.agents/skills/test-driven-development/SKILL.md): Define verification flows, logic assertions, and test specifications.
+  - [cc-skill-security-review](.agents/skills/cc-skill-security-review/SKILL.md): Identify security considerations, boundary checks, and auth validation requirements.
 - **Self-Grading Requirement**: Before presenting the plan, grade it against high-quality coding standards (define metrics such as complexity, testability, security, and performance). If the plan does not meet a passing grade, iterate and rebuild it. Repeat this self-grading loop up to 5 times. If a passing grade is still not met after 5 iterations, halt, document the issues, and request the user to validate the work.
 
 ### Phase 2: Generate Code (Execution Mode)
 - **Action**: Create or modify pages/components under `src/pages` or `src/components`.
 - **Guidelines**: Keep code modular, strictly type-safe, semantic, and optimized for Vercel edge runtime if applicable.
+- **Skills to Apply**:
+  - [frontend-developer](.agents/skills/frontend-developer/SKILL.md) / [senior-fullstack](.agents/skills/senior-fullstack/SKILL.md): Build components and setup page routers and APIs.
+  - [react-best-practices](.agents/skills/react-best-practices/SKILL.md) / [nextjs-best-practices](.agents/skills/nextjs-best-practices/SKILL.md): Implement performance-optimized rendering, clean React hooks, and proper route handling.
+  - [tailwind-patterns](.agents/skills/tailwind-patterns/SKILL.md): Write styling using modern Tailwind CSS v4 guidelines.
+  - [ui-ux-pro-max](.agents/skills/ui-ux-pro-max/SKILL.md) / [uxui-principles](.agents/skills/uxui-principles/SKILL.md): Implement premium design aesthetics, HSL color palettes, spacing discipline, and subtle micro-animations.
+  - [wcag-audit-patterns](.agents/skills/wcag-audit-patterns/SKILL.md) / [accesslint-audit](.agents/skills/accesslint-audit/SKILL.md): Ensure high accessibility, proper keyboard focus indicators, color contrast, and descriptive ARIA labels.
+  - [seo-audit](.agents/skills/seo-audit/SKILL.md): Apply SEO best practices (proper page titles, meta descriptions, hierarchical semantic structure).
+  - [cc-skill-security-review](.agents/skills/cc-skill-security-review/SKILL.md): Sanitize user inputs, validate data transfers, and protect client/server boundaries.
 
 ### Phase 3: Lint
 - **Action**: Run the linter to verify syntax correctness and code style compliance.
 - **Command**: `npm run lint`
+- **Skills to Apply**:
+  - [lint-and-validate](.agents/skills/lint-and-validate/SKILL.md): Execute linter rules and immediately resolve any highlighted style or syntax issues before building.
 
 ### Phase 4: Build
 - **Action**: Build the Next.js production bundle locally to guarantee that the application compiles without error.
 - **Command**: `npm run build`
+- **Skills to Apply**:
+  - [vibecode-production-qa-validator](.agents/skills/vibecode-production-qa-validator/SKILL.md): Validate build compilation output, bundle assets, and metadata configurations.
 
 ### Phase 5: Test (Logic Flows Only)
 - **Action**: Run test suites using **Jest** to verify functional logic (e.g., API route logic, utility functions, state transitions).
 - **Rule**: Do not write browser visual UI tests (e.g. Playwright UI workflows) unless explicitly requested; focus purely on code logic.
 - **Command**: `npm test`
+- **Skills to Apply**:
+  - [test-driven-development](.agents/skills/test-driven-development/SKILL.md): Run Jest checks against defined criteria.
+  - [test-fixing](.agents/skills/test-fixing/SKILL.md): Apply systematic workflows to debug and repair failing test assertions.
 
 ### Phase 6: Commit Message
 - **Action**: After successfully validating the changes, generate a proposed git commit message based off the work done (using Conventional Commits format, e.g., `feat: ...`, `fix: ...`, `chore: ...`).
+- **Skills to Apply**:
+  - [security-scanning-security-sast](.agents/skills/security-scanning-security-sast/SKILL.md): Perform a code SAST scan to detect logic vulnerabilities prior to commit.
+  - [security-scanning-security-dependencies](.agents/skills/security-scanning-security-dependencies/SKILL.md): Audit package dependencies for supply-chain risks if packages were modified.
