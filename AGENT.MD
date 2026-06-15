@@ -51,7 +51,7 @@ To maintain state-of-the-art implementation quality, the following skills from t
 
 ## 3. Development Workflow
 
-All development cycles MUST follow this five-stage workflow. Do not skip or bypass any stage.
+All development cycles MUST follow this workflow. Do not skip or bypass any stage.
 
 ```mermaid
 graph TD
@@ -59,12 +59,14 @@ graph TD
     B --> C[3. Lint]
     C --> D[4. Build]
     D --> E[5. Test via Jest]
-    E --> F[Vercel Deployment]
+    E --> F[6. Commit Message]
+    F --> G[Vercel Deployment]
 ```
 
 ### Phase 1: Plan First (Planning Mode)
 - **Action**: Research the requirements and codebase state. Draft a detailed `implementation_plan.md` in the artifact directory.
 - **Rule**: Include open questions and request user feedback. **Stop and wait** for explicit user approval before writing code.
+- **Self-Grading Requirement**: Before presenting the plan, grade it against high-quality coding standards (define metrics such as complexity, testability, security, and performance). If the plan does not meet a passing grade, iterate and rebuild it. Repeat this self-grading loop up to 5 times. If a passing grade is still not met after 5 iterations, halt, document the issues, and request the user to validate the work.
 
 ### Phase 2: Generate Code (Execution Mode)
 - **Action**: Create or modify pages/components under `src/pages` or `src/components`.
@@ -82,3 +84,6 @@ graph TD
 - **Action**: Run test suites using **Jest** to verify functional logic (e.g., API route logic, utility functions, state transitions).
 - **Rule**: Do not write browser visual UI tests (e.g. Playwright UI workflows) unless explicitly requested; focus purely on code logic.
 - **Command**: `npm test`
+
+### Phase 6: Commit Message
+- **Action**: After successfully validating the changes, generate a proposed git commit message based off the work done (using Conventional Commits format, e.g., `feat: ...`, `fix: ...`, `chore: ...`).

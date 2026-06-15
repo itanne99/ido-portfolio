@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Send, CheckCircle2, ChevronDown, X } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import Layout from "@/components/layout";
 import content from "@/data/content.json";
+import { useAlert } from "@/context/alert-context";
 
 const getProjectTypeLabel = (value) => {
   switch (value) {
@@ -16,6 +18,9 @@ const getProjectTypeLabel = (value) => {
     case "consultancy": {
       return "Creative Strategy";
     }
+    case "system-report": {
+      return "System Diagnostic / Bug Report";
+    }
     case "other": {
       return "Something Else";
     }
@@ -26,6 +31,8 @@ const getProjectTypeLabel = (value) => {
 };
 
 export default function Contact() {
+  const { showAlert } = useAlert();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,8 +41,25 @@ export default function Contact() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState("");
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+    if (router.isReady && router.query.type) {
+      const queryType = router.query.type;
+      const isValidType = content.contact.form.projectTypes.some(
+        (t) => t.value === queryType
+      );
+      if (isValidType) {
+        timeoutId = setTimeout(() => {
+          setFormData((previous) => ({ ...previous, subject: queryType }));
+        }, 0);
+      }
+    }
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [router.isReady, router.query]);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
@@ -45,12 +69,14 @@ export default function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
-      setSubmitError("Please fill in all required fields.");
+      showAlert("Please fill in all required fields.", {
+        type: "error",
+        title: "Validation Error",
+      });
       return;
     }
 
     setIsSubmitting(true);
-    setSubmitError("");
 
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateAdminID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ADMIN;
@@ -59,7 +85,14 @@ export default function Contact() {
 
     if (!serviceID || !templateAdminID || !templateClientID || !publicKey) {
       console.error("EmailJS environment variables are missing.");
-      setSubmitError("Inquiry configuration is not set up correctly. Please contact me directly.");
+      showAlert(
+        "Inquiry configuration is not set up correctly. Please contact me directly.",
+        {
+          type: "error",
+          title: "Configuration Error",
+          duration: 10_000,
+        }
+      );
       setIsSubmitting(false);
       return;
     }
@@ -77,10 +110,22 @@ export default function Contact() {
     ])
       .then(() => {
         setIsSubmitted(true);
+        showAlert("Your message has been sent successfully!", {
+          type: "success",
+          title: "Message Sent",
+          duration: 5000,
+        });
       })
       .catch((error) => {
         console.error("EmailJS submission failure:", error);
-        setSubmitError("Failed to send message. Please check your internet connection and try again.");
+        showAlert(
+          "Failed to send message. Please check your internet connection and try again.",
+          {
+            type: "error",
+            title: "Delivery Failed",
+            duration: 8000,
+          }
+        );
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -217,27 +262,9 @@ export default function Contact() {
                   className="space-y-12"
                   suppressHydrationWarning={true}
                 >
-                  {/* Submit Error Message */}
-                  {submitError && (
-                    <div
-                      className="p-4 bg-error-container text-on-error-container rounded-2xl text-sm font-medium border border-error/20 flex items-center justify-between"
-                      role="alert"
-                    >
-                      <span>{submitError}</span>
-                      <button
-                        type="button"
-                        onClick={() => setSubmitError("")}
-                        className="p-1 hover:opacity-80 transition-opacity cursor-pointer"
-                        aria-label="Dismiss error"
-                      >
-                        <X size={16} />
-                      </button>
-                    </div>
-                  )}
-
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
                     {/* Name Field */}
-                    <div className="relative flex flex-col">
+                    <div className="relative flex flex-col" suppressHydrationWarning={true}>
                       <input
                         id="name"
                         value={formData.name}
@@ -257,7 +284,7 @@ export default function Contact() {
                     </div>
 
                     {/* Email Field */}
-                    <div className="relative flex flex-col">
+                    <div className="relative flex flex-col" suppressHydrationWarning={true}>
                       <input
                         id="email"
                         value={formData.email}

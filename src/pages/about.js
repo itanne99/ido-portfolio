@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
@@ -11,17 +11,89 @@ import {
   Key, 
   Cloud, 
   Settings, 
-  ArrowRight 
+  ArrowRight,
+  RefreshCw
 } from "lucide-react";
 import Layout from "@/components/layout";
 import SectionHeader from "@/components/section-header";
 import TimelineItem from "@/components/timeline-item";
 import BentoCard from "@/components/bento-card";
 import RepoCard from "@/components/repo-card";
+import CustomAlert from "@/components/custom-alert";
+import { useAlert } from "@/context/alert-context";
 import { containerVariants, itemVariants } from "@/utils/animations";
 import content from "@/data/content.json";
 
-export default function About({ repos }) {
+export default function About({ repos, fetchFailed }) {
+  const { showAlert } = useAlert();
+  const [reposList, setReposList] = useState(repos);
+  const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(fetchFailed);
+  const [alertDismissed, setAlertDismissed] = useState(false);
+
+  useEffect(() => {
+    if (fetchFailed) {
+      showAlert(
+        "Could not fetch the latest GitHub repositories. Displaying cached data.",
+        {
+          type: "warning",
+          title: "Connection Alert",
+          duration: 7000,
+        }
+      );
+    }
+  }, [fetchFailed, showAlert]);
+
+  async function handleRefresh() {
+    if (loading) return;
+    setLoading(true);
+    try {
+      const res = await fetch("/api/github-repos");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        const message = errorData.error || "Failed to retrieve live GitHub repositories. Please check your network and try again.";
+        setHasError(true);
+        showAlert(message, {
+          type: "error",
+          title: "Sync Failed",
+          duration: 8000,
+          action: {
+            label: "Retry",
+            onClick: () => handleRefresh(),
+          },
+        });
+        setLoading(false);
+        return;
+      }
+      
+      const data = await res.json();
+      setReposList(data);
+      setHasError(false);
+      setAlertDismissed(false);
+      showAlert("GitHub repositories successfully updated.", {
+        type: "success",
+        title: "Success",
+        duration: 4000,
+      });
+    } catch (error) {
+      console.error("Failed to refresh repos client-side:", error);
+      setHasError(true);
+      showAlert(
+        "Failed to retrieve live GitHub repositories. Please check your network and try again.",
+        {
+          type: "error",
+          title: "Sync Failed",
+          duration: 8000,
+          action: {
+            label: "Retry",
+            onClick: () => handleRefresh(),
+          },
+        }
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <Layout
       title={content.about.seo.title}
@@ -226,20 +298,73 @@ export default function About({ repos }) {
           <SectionHeader 
             title={content.about.repositories.title}
             description={content.about.repositories.description}
+            action={
+              <button
+                onClick={handleRefresh}
+                disabled={loading}
+                className="flex items-center gap-2 px-6 py-3 bg-surface-container-high border border-outline-variant/30 text-on-surface hover:bg-surface-container-highest transition-all rounded-full font-label-caps text-[11px] font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 min-h-[44px]"
+                aria-label="Refresh repository data"
+              >
+                <RefreshCw size={14} className={`text-primary ${loading ? "animate-spin" : ""}`} />
+                {loading ? "Refreshing..." : "Refresh"}
+              </button>
+            }
           />
 
+          {hasError && !alertDismissed && (
+            <div className="mb-8 w-full">
+              <CustomAlert
+                type="warning"
+                title="Showing Fallback Data"
+                message="We are currently displaying cached GitHub repository data because the live connection is unavailable. You can attempt to refresh to pull real-time data."
+                onClose={() => setAlertDismissed(true)}
+                action={{
+                  label: "Refresh Data",
+                  onClick: handleRefresh,
+                }}
+              />
+            </div>
+          )}
+
           <motion.div 
+            key={loading ? "loading" : "loaded"}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {repos.map((repo) => (
-              <motion.div key={repo.id} variants={itemVariants}>
-                <RepoCard repo={repo} />
-              </motion.div>
-            ))}
+            {loading ? (
+              Array.from({ length: 6 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="p-8 bg-surface-container-low border border-outline-variant/10 rounded-2xl flex flex-col justify-between min-h-[260px] animate-pulse"
+                >
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="w-8 h-8 rounded-full bg-outline-variant/30" />
+                      <div className="w-12 h-4 rounded bg-outline-variant/30" />
+                    </div>
+                    <div className="w-3/4 h-6 rounded bg-outline-variant/30" />
+                    <div className="space-y-2">
+                      <div className="w-full h-4 rounded bg-outline-variant/30" />
+                      <div className="w-5/6 h-4 rounded bg-outline-variant/30" />
+                      <div className="w-2/3 h-4 rounded bg-outline-variant/30" />
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center pt-6 border-t border-outline-variant/10">
+                    <div className="w-16 h-5 rounded-full bg-outline-variant/30" />
+                    <div className="w-24 h-4 rounded bg-outline-variant/30" />
+                  </div>
+                </div>
+              ))
+            ) : (
+              reposList.map((repo) => (
+                <motion.div key={repo.id} variants={itemVariants}>
+                  <RepoCard repo={repo} />
+                </motion.div>
+              ))
+            )}
           </motion.div>
         </section>
 
@@ -273,6 +398,7 @@ export default function About({ repos }) {
 export async function getStaticProps() {
   const username = "itanne99";
   let repos = [];
+  let fetchFailed = false;
 
   try {
     const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`);
@@ -282,19 +408,24 @@ export async function getStaticProps() {
         .filter((r) => !r.fork)
         .toSorted((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0) || new Date(b.updated_at) - new Date(a.updated_at))
         .slice(0, 6);
+    } else {
+      fetchFailed = true;
     }
   } catch (error) {
     console.error("Error fetching GitHub repos:", error);
+    fetchFailed = true;
   }
 
   // Robust fallback state if API fails or returns no repos
   if (repos.length === 0) {
     repos = content.about.repositories.fallback;
+    fetchFailed = true;
   }
 
   return {
     props: {
       repos,
+      fetchFailed,
     },
     revalidate: 3600, // Regenerate page in the background once every hour
   };
